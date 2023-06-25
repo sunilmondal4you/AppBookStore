@@ -4,7 +4,7 @@ export interface Author {
   author?: string;
   birthday?: string;
   birthPlace?: string;
-  bookList?: Book[];
+  books?: Book[];
 }
 
 export interface Book {
