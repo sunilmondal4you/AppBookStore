@@ -36,7 +36,18 @@
               style="height: 300px; width: 100%; object-fit: cover"
             />
           </div>
-          <div class="fs-3">{{ item.title }}</div>
+          <div class="my-1 d-flex justify-content-between">
+            <a
+              [href]="item.purchaseLink"
+              target="_blank"
+              class="btn btn-link p-0 fs-5"
+              >{{ item.title }}</a
+            >
+
+            <div class="fs-5">
+              <span class="badge bg-secondary">{{ item.PublishDate }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
