@@ -32,6 +32,11 @@ export const deleteBookAction = createAction(
   props<{ index: number }>()
 );
 
+export const sortBookByTitleAction = createAction(
+  'Sort Book by title',
+  props<{ asc: boolean }>()
+);
+
 export const initialState: BookStore = { author: {} };
 export const bookStoreReducer = createReducer(
   initialState,
@@ -50,5 +55,45 @@ export const bookStoreReducer = createReducer(
 
     let newAuthor = { ...state.author, books: filteredBooks };
     return { ...state, author: newAuthor };
+  }),
+
+  on(sortBookByTitleAction, (state, { asc }) => {
+    let books: Book[] = state.author?.books || [];
+    let books1 = [...books];
+
+    if (asc) {
+      books1.sort(ascSortByTitle);
+    } else {
+      books1.sort(descSortByTitle);
+    }
+
+    let newAuthor = { ...state.author, books: books1 };
+    return { ...state, author: newAuthor };
   })
 );
+
+let ascSortByTitle = (a: Book, b: Book) => {
+  let nameA = a.title ? a.title.toUpperCase() : '';
+  let nameB = b.title ? b.title.toUpperCase() : '';
+
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+};
+
+let descSortByTitle = (a: Book, b: Book) => {
+  let nameA = a.title ? a.title.toUpperCase() : '';
+  let nameB = b.title ? b.title.toUpperCase() : '';
+
+  if (nameA > nameB) {
+    return -1;
+  }
+  if (nameA < nameB) {
+    return 1;
+  }
+  return 0;
+};

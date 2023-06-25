@@ -5,6 +5,7 @@ import {
   BookStore,
   deleteBookAction,
   getAuthorAndBooksAction,
+  sortBookByTitleAction,
 } from 'src/app/store/bookstore.reducer';
 import { MyAppState } from 'src/app/store/root.reducer';
 
@@ -14,7 +15,7 @@ import { MyAppState } from 'src/app/store/root.reducer';
   styleUrls: ['./list-book.component.scss'],
 })
 export class ListBookComponent implements OnInit {
-  bookStore: BookStore | undefined;
+  bookStore: BookStore = { author: {} };
 
   constructor(private store: Store<MyAppState>) {}
 
@@ -33,5 +34,10 @@ export class ListBookComponent implements OnInit {
 
   deleteBookHandler(index: number, bookItem: Book) {
     this.store.dispatch(deleteBookAction({ index: index }));
+  }
+
+  // SORTING OPTIONS
+  sortByTitleHandler(ascOrder: boolean) {
+    this.store.dispatch(sortBookByTitleAction({ asc: ascOrder }));
   }
 }
