@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
+  Book,
   BookStore,
   getAuthorAndBooksAction,
 } from 'src/app/store/bookstore.reducer';
@@ -23,5 +24,13 @@ export class ListBookComponent implements OnInit {
       console.log(state.bookStore);
       this.bookStore = state.bookStore;
     });
+  }
+
+  editBookHandler(index: number, bookItem: Book) {
+    console.log(index, bookItem);
+  }
+
+  deleteBookHandler(index: number, bookItem: Book) {
+    console.log(index, bookItem);
   }
 }
