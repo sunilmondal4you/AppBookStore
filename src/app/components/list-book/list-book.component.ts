@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
-  Author,
+  BookStore,
   getAuthorAndBooksAction,
 } from 'src/app/store/bookstore.reducer';
 import { MyAppState } from 'src/app/store/root.reducer';
@@ -12,7 +12,7 @@ import { MyAppState } from 'src/app/store/root.reducer';
   styleUrls: ['./list-book.component.scss'],
 })
 export class ListBookComponent implements OnInit {
-  authorDetail: any;
+  bookStore: BookStore | undefined;
 
   constructor(private store: Store<MyAppState>) {}
 
@@ -20,7 +20,8 @@ export class ListBookComponent implements OnInit {
     this.store.dispatch(getAuthorAndBooksAction());
 
     this.store.subscribe((state) => {
-      this.authorDetail = state.bookStore;
+      console.log(state.bookStore);
+      this.bookStore = state.bookStore;
     });
   }
 }
