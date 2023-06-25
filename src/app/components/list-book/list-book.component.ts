@@ -5,6 +5,7 @@ import {
   BookStore,
   deleteBookAction,
   getAuthorAndBooksAction,
+  sortBookByPublishDateAction,
   sortBookByTitleAction,
 } from 'src/app/store/bookstore.reducer';
 import { MyAppState } from 'src/app/store/root.reducer';
@@ -39,5 +40,10 @@ export class ListBookComponent implements OnInit {
   // SORTING OPTIONS
   sortByTitleHandler(ascOrder: boolean) {
     this.store.dispatch(sortBookByTitleAction({ asc: ascOrder }));
+  }
+
+  // SORTING OPTIONS
+  sortByPublishDateHandler(ascOrder: boolean) {
+    this.store.dispatch(sortBookByPublishDateAction({ asc: ascOrder }));
   }
 }

@@ -37,6 +37,11 @@ export const sortBookByTitleAction = createAction(
   props<{ asc: boolean }>()
 );
 
+export const sortBookByPublishDateAction = createAction(
+  'Sort Book by PublishDate',
+  props<{ asc: boolean }>()
+);
+
 export const initialState: BookStore = { author: {} };
 export const bookStoreReducer = createReducer(
   initialState,
@@ -69,6 +74,20 @@ export const bookStoreReducer = createReducer(
 
     let newAuthor = { ...state.author, books: books1 };
     return { ...state, author: newAuthor };
+  }),
+
+  on(sortBookByPublishDateAction, (state, { asc }) => {
+    let books: Book[] = state.author?.books || [];
+    let books1 = [...books];
+
+    if (asc) {
+      books1.sort(ascSortByPublishDate);
+    } else {
+      books1.sort(descSortByPublishDate);
+    }
+
+    let newAuthor = { ...state.author, books: books1 };
+    return { ...state, author: newAuthor };
   })
 );
 
@@ -88,6 +107,32 @@ let ascSortByTitle = (a: Book, b: Book) => {
 let descSortByTitle = (a: Book, b: Book) => {
   let nameA = a.title ? a.title.toUpperCase() : '';
   let nameB = b.title ? b.title.toUpperCase() : '';
+
+  if (nameA > nameB) {
+    return -1;
+  }
+  if (nameA < nameB) {
+    return 1;
+  }
+  return 0;
+};
+
+let ascSortByPublishDate = (a: Book, b: Book) => {
+  let nameA = a.PublishDate || new Date();
+  let nameB = b.PublishDate || new Date();
+
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+};
+
+let descSortByPublishDate = (a: Book, b: Book) => {
+  let nameA = a.PublishDate || new Date();
+  let nameB = b.PublishDate || new Date();
 
   if (nameA > nameB) {
     return -1;

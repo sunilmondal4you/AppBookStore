@@ -49,8 +49,19 @@
               Desc Title
             </div>
           </li>
-          <li><div class="dropdown-item">ASC PublishDate</div></li>
-          <li><div class="dropdown-item">DESC PublishDate</div></li>
+          <li>
+            <div class="dropdown-item" (click)="sortByPublishDateHandler(true)">
+              ASC PublishDate
+            </div>
+          </li>
+          <li>
+            <div
+              class="dropdown-item"
+              (click)="sortByPublishDateHandler(false)"
+            >
+              DESC PublishDate
+            </div>
+          </li>
         </ul>
       </div>
     </div>
