@@ -36,7 +36,7 @@
               style="height: 300px; width: 100%; object-fit: cover"
             />
           </div>
-          <div class="my-1 d-flex justify-content-between">
+          <div class="mt-1 d-flex justify-content-between">
             <a
               [href]="item.purchaseLink"
               target="_blank"
@@ -47,6 +47,18 @@
             <div class="fs-5">
               <span class="badge bg-secondary">{{ item.PublishDate }}</span>
             </div>
+          </div>
+          <div>
+            <input
+              class="btn btn-sm btn-link ps-0"
+              type="button"
+              value="Edit"
+            />
+            <input
+              class="btn btn-sm btn-link text-danger ps-0"
+              type="button"
+              value="Delete"
+            />
           </div>
         </div>
       </div>
