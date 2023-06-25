@@ -1,3 +1,4 @@
+import { BookStoreEffects } from './bookstore.effects';
 import { BookStore, bookStoreReducer } from './bookstore.reducer';
 import { ScoreStore, scoreReducer } from './score.reducer';
 
@@ -11,4 +12,4 @@ export const rootReducer = {
   bookStore: bookStoreReducer,
 };
 
-export const rootEffects = [];
+export const rootEffects = [BookStoreEffects];

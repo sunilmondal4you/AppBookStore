@@ -24,7 +24,7 @@ export const getAuthorAndBooksAction = createAction(
 );
 export const getAuthorAndBooksSuccessAction = createAction(
   'Get Author and Books Success Action',
-  props<{ author: any; bookList: any }>()
+  props<{ response: any }>()
 );
 
 export const initialState: BookStore = { author: {} };
@@ -35,7 +35,7 @@ export const bookStoreReducer = createReducer(
     return { ...state, loading: true };
   }),
 
-  on(getAuthorAndBooksSuccessAction, (state, { author }) => {
-    return { ...state, loading: false, author };
+  on(getAuthorAndBooksSuccessAction, (state, { response }) => {
+    return { ...state, loading: false, author: response };
   })
 );
