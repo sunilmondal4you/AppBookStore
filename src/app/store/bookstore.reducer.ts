@@ -27,6 +27,11 @@ export const getAuthorAndBooksSuccessAction = createAction(
   props<{ response: any }>()
 );
 
+export const deleteBookAction = createAction(
+  'Delete Book Action',
+  props<{ index: number }>()
+);
+
 export const initialState: BookStore = { author: {} };
 export const bookStoreReducer = createReducer(
   initialState,
@@ -37,5 +42,13 @@ export const bookStoreReducer = createReducer(
 
   on(getAuthorAndBooksSuccessAction, (state, { response }) => {
     return { ...state, loading: false, author: response };
+  }),
+
+  on(deleteBookAction, (state, { index }) => {
+    let books: Book[] = state.author?.books || [];
+    let filteredBooks: Book[] = books.filter((item, iindex) => index != iindex);
+
+    let newAuthor = { ...state.author, books: filteredBooks };
+    return { ...state, author: newAuthor };
   })
 );

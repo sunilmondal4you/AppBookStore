@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import {
   Book,
   BookStore,
+  deleteBookAction,
   getAuthorAndBooksAction,
 } from 'src/app/store/bookstore.reducer';
 import { MyAppState } from 'src/app/store/root.reducer';
@@ -31,6 +32,6 @@ export class ListBookComponent implements OnInit {
   }
 
   deleteBookHandler(index: number, bookItem: Book) {
-    console.log(index, bookItem);
+    this.store.dispatch(deleteBookAction({ index: index }));
   }
 }
