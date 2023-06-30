@@ -1,1 +1,42 @@
-<p>add-book works!</p>
+<div class="row justify-content-center">
+  <div class="col-5 mt-1">
+    <div>
+      <h2 class="text-center">Add a new book</h2>
+
+      <div>
+        <div>
+          <label>ImageUrl</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newBook.imageUrl"
+          />
+        </div>
+        <div>
+          <label>Title</label>
+          <input type="text" class="form-control" [(ngModel)]="newBook.title" />
+        </div>
+        <div>
+          <label>purchaseLink</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newBook.purchaseLink"
+          />
+        </div>
+        <div>
+          <label>PublishDate</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newBook.PublishDate"
+          />
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="addBook()">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
