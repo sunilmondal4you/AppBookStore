@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Book, addBookAction } from 'src/app/store/bookstore.reducer';
 import { MyAppState } from 'src/app/store/root.reducer';
@@ -19,7 +20,11 @@ export class AddBookComponent implements OnInit {
 
   newBook: Book | undefined;
 
-  constructor(private store: Store<MyAppState>, private fb: FormBuilder) {}
+  constructor(
+    private store: Store<MyAppState>,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -33,5 +38,7 @@ export class AddBookComponent implements OnInit {
     console.log(newBook);
 
     this.store.dispatch(addBookAction({ newBook: newBook }));
+
+    this.router.navigate(['/list-book']);
   }
 }
