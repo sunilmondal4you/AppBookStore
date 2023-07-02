@@ -3,40 +3,96 @@
     <div>
       <h2 class="text-center">Add a new book</h2>
 
-      <div>
-        <div>
-          <label>ImageUrl</label>
+      <form name="myForm" [formGroup]="myForm">
+        <div class="mb-3">
+          <label for="imageUrl" class="form-label">ImageUrl</label>
           <input
             type="text"
+            name="imageUrl"
+            id="imageUrl"
             class="form-control"
-            [(ngModel)]="newBook.imageUrl"
+            formControlName="imageUrl"
           />
-        </div>
-        <div>
-          <label>Title</label>
-          <input type="text" class="form-control" [(ngModel)]="newBook.title" />
-        </div>
-        <div>
-          <label>purchaseLink</label>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="newBook.purchaseLink"
-          />
-        </div>
-        <div>
-          <label>PublishDate</label>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="newBook.PublishDate"
-          />
+          <div
+            *ngIf="
+              myForm.get('imageUrl')?.invalid &&
+              (myForm.get('imageUrl')?.dirty || myForm.get('imageUrl')?.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="myForm.get('imageUrl')?.errors?.['required']"
+            >
+              ImageUrl field is required.
+            </small>
+          </div>
         </div>
 
-        <button type="button" class="btn btn-primary" (click)="addBook()">
-          Add
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" class="form-control" formControlName="title" />
+          <div
+            *ngIf="
+              myForm.get('title')?.invalid &&
+              (myForm.get('title')?.dirty || myForm.get('title')?.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="myForm.get('title')?.errors?.['required']"
+            >
+              Title field is required.
+            </small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">PurchaseLink</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="purchaseLink"
+          />
+          <div
+            *ngIf="
+              myForm.get('purchaseLink')?.invalid &&
+              (myForm.get('purchaseLink')?.dirty ||
+                myForm.get('purchaseLink')?.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="myForm.get('purchaseLink')?.errors?.['required']"
+            >
+              PurchaseLink field is required.
+            </small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">PublishDate</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="PublishDate"
+          />
+          <div
+            *ngIf="
+              myForm.get('PublishDate')?.invalid &&
+              (myForm.get('PublishDate')?.dirty ||
+                myForm.get('PublishDate')?.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="myForm.get('PublishDate')?.errors?.['required']"
+            >
+              PublishDate field is required.
+            </small>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="addBook()">
+          Submit
         </button>
-      </div>
+      </form>
     </div>
   </div>
 </div>
