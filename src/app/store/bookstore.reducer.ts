@@ -42,6 +42,11 @@ export const sortBookByPublishDateAction = createAction(
   props<{ asc: boolean }>()
 );
 
+export const addBookAction = createAction(
+  'Add Book Action',
+  props<{ newBook: Book }>()
+);
+
 export const initialState: BookStore = { author: {} };
 export const bookStoreReducer = createReducer(
   initialState,
@@ -85,6 +90,14 @@ export const bookStoreReducer = createReducer(
     } else {
       books1.sort(descSortByPublishDate);
     }
+
+    let newAuthor = { ...state.author, books: books1 };
+    return { ...state, author: newAuthor };
+  }),
+
+  on(addBookAction, (state, { newBook }) => {
+    let books: Book[] = state.author?.books || [];
+    let books1 = [...books, newBook];
 
     let newAuthor = { ...state.author, books: books1 };
     return { ...state, author: newAuthor };

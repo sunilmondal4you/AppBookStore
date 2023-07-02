@@ -21,12 +21,12 @@ export class ListBookComponent implements OnInit {
   constructor(private store: Store<MyAppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(getAuthorAndBooksAction());
-
     this.store.subscribe((state) => {
       console.log(state.bookStore);
       this.bookStore = state.bookStore;
     });
+    if (!this.bookStore?.author?.books?.length)
+      this.store.dispatch(getAuthorAndBooksAction());
   }
 
   editBookHandler(index: number, bookItem: Book) {
