@@ -35,7 +35,6 @@ export class AddBookComponent implements OnInit {
       purchaseLink: this.myForm.value.purchaseLink || '',
       PublishDate: this.myForm.value.PublishDate || '',
     };
-    console.log(newBook);
 
     this.store.dispatch(addBookAction({ newBook: newBook }));
 

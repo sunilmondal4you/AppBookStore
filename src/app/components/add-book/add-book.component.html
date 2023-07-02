@@ -89,7 +89,12 @@
             </small>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary" (click)="addBook()">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="myForm.invalid"
+          (click)="addBook()"
+        >
           Submit
         </button>
       </form>
